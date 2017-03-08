@@ -12,7 +12,7 @@ InputMethodHolder
 4. 不要忘记反注册：`InputMethodHolder.unregisterListener(onInputMethodListener);`
 5. 应用退出时最好调用：`InputMethodHolder.release();` 防止 Context 内存泄漏。  
 
-'''java
+```java
 	onInputMethodListener = new OnInputMethodListener() {  
 	   @Override  
 	   public void onShow(boolean result) {  
@@ -24,14 +24,14 @@ InputMethodHolder
 	   }  
 	};  
 	InputMethodHolder.registerListener(onInputMethodListener);
-'''
+```
 
 **具体使用方法请看Sample，未做充分测试，在定制ROM中可能存在兼容性问题，欢迎提ISSUE**
 
 缺陷：
 -----
 
-'''java
+```java
     public interface OnInputMethodListener {
 
     void onShow(boolean result);
@@ -44,7 +44,7 @@ InputMethodHolder
     void onHide(boolean result);
 
 	}
-'''
+```
 
 Sample演示
 ----------
