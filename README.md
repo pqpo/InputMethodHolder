@@ -1,7 +1,7 @@
 InputMethodHolder
 ====
 
-> 通过 Hook InputMethodManager 的方式监听系统软键盘的状态, 当然不仅仅是监听软键盘，类似的还可以hook其他系统服务。顺手点个Star吧！
+> 通过 Hook InputMethodManager 的方式监听系统软键盘的状态, 当然不仅仅是监听软键盘，类似的还可以hook其他系统服务。欢迎fork, 顺手点个Star吧！
 
 使用方式：
 ---------
@@ -43,7 +43,7 @@ protected void onDestroy() {
 InputMethodHolder.release();
 ```
 
-**具体使用方法请看Sample，未做充分测试，在定制ROM中可能存在兼容性问题，欢迎提ISSUE**
+**具体使用方法请看Sample，未做充分测试，如遇到问题欢迎提ISSUE**
 
 缺陷：
 -----
@@ -66,3 +66,24 @@ Sample演示
 ![](http://ojlty2hua.qnssl.com/image-1488865989092-c2hvd2lucHV0LnBuZw==.png?imageView2/3/w/400/h/400/q/60|watermark/2/text/cWxtLnB3/font/5a6L5L2T/fontsize/500/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)  
 
 ![](http://ojlty2hua.qnssl.com/image-1488866117210-aGlkZWlucHV0LnBuZw==.png?imageView2/3/w/400/h/400/q/60|watermark/2/text/cWxtLnB3/font/5a6L5L2T/fontsize/500/fill/I0VGRUZFRg==/dissolve/100/gravity/SouthEast/dx/10/dy/10)
+
+联系
+----
+pqponet@gmail.com
+
+License
+--------
+
+    Copyright 2013 Square, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
