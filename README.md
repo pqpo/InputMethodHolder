@@ -6,36 +6,42 @@ InputMethodHolder
 使用方式：
 ---------
 
-1. 导入InputMethodHodler作为依赖库。
-2. 调用初始化方法 `InputMethodHolder.init(context);` 该方法会 hook InputMethodManager，所以建议越早调用越好，比如在Application中的`void attachBaseContext(Context base)` 方法中。
+1.导入InputMethodHodler作为依赖库。
+2.调用初始化方法, 该方法会 hook InputMethodManager，所以建议越早调用越好:
 ```java
-    public class MyApplication extends Application {  
-        @Override  
-        protected void attachBaseContext(Context base) {  
-            InputMethodHolder.init(base);  
-            super.attachBaseContext(base);  
-        }  
-    }  
+public class MyApplication extends Application {
+    @Override
+    protected void attachBaseContext(Context base) {
+        InputMethodHolder.init(base);
+        super.attachBaseContext(base);
+    }
+}
 ```
-3. 需要监听的地方注册监听器：
+3.需要监听的地方注册监听器,并且不要忘记反注册：
 ```java
-	onInputMethodListener = new OnInputMethodListener() {
-	   @Override
-	   public void onShow(boolean result) {
-	       Toast.makeText(MainActivity.this, "Show input method! " + result, Toast.LENGTH_SHORT).show();
-	   }
-	   @Override
-	   public void onHide(boolean result) {
-	       Toast.makeText(MainActivity.this, "Hide input method! " + result, Toast.LENGTH_SHORT).show();
-	   }
-	};
-	InputMethodHolder.registerListener(onInputMethodListener);
+onInputMethodListener = new OnInputMethodListener() {
+    @Override
+	public void onShow(boolean result) {
+	    Toast.makeText(MainActivity.this, "Show input method! " + result, Toast.LENGTH_SHORT).show();
+	}
+	@Override
+	public void onHide(boolean result) {
+	    Toast.makeText(MainActivity.this, "Hide input method! " + result, Toast.LENGTH_SHORT).show();
+	}
+};
+InputMethodHolder.registerListener(onInputMethodListener);
 ```
-4. 不要忘记反注册：
 ```java
-InputMethodHolder.unregisterListener(onInputMethodListener);
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    InputMethodHolder.unregisterListener(onInputMethodListener);
+}
 ```
-5. 应用退出时最好调用：`InputMethodHolder.release();` 防止 Context 内存泄漏。
+4.应用退出时释放资源：
+```java
+InputMethodHolder.release();
+```
 
 **具体使用方法请看Sample，未做充分测试，在定制ROM中可能存在兼容性问题，欢迎提ISSUE**
 
@@ -43,18 +49,15 @@ InputMethodHolder.unregisterListener(onInputMethodListener);
 -----
 
 ```java
-    public interface OnInputMethodListener {
-
+public interface OnInputMethodListener {
     void onShow(boolean result);
-
     /**
      * 仅支持主动调用hideSoftInputFromWindow，会回调onHide()
      * 通过系统按钮关闭软键盘的时候不会回调，
      * 因为键盘在一个独立的进程中，我们hook的只是本地进程的一个binder代理
      */
     void onHide(boolean result);
-
-	}
+}
 ```
 
 Sample演示
