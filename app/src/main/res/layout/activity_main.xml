@@ -13,18 +13,28 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SoftInputMethodListener test" />
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"
+        android:text="SoftInputMethodListener Test" />
+
+    <Button
+        android:id="@+id/btn_init"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="Hook InputMethodManager"/>
 
     <EditText
+        android:id="@+id/et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="try to click"/>
+        android:hint="Click to show input method"/>
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn_close_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click to close input method"/>
+        android:text="Click to close input method"/>
 
 </LinearLayout>

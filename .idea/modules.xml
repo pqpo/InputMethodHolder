@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SoftInputMethodListener.iml" filepath="$PROJECT_DIR$/SoftInputMethodListener.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/softinputmethodholder/softinputmethodholder.iml" filepath="$PROJECT_DIR$/softinputmethodholder/softinputmethodholder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inputmethodholder/inputmethodholder.iml" filepath="$PROJECT_DIR$/inputmethodholder/inputmethodholder.iml" />
     </modules>
   </component>
 </project>
