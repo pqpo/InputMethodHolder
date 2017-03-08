@@ -8,23 +8,34 @@ InputMethodHolder
 
 1. 导入InputMethodHodler作为依赖库。
 2. 调用初始化方法 `InputMethodHolder.init(context);` 该方法会 hook InputMethodManager，所以建议越早调用越好，比如在Application中的`void attachBaseContext(Context base)` 方法中。
-3. 需要监听的地方注册监听器：`InputMethodHolder.registerListener(onInputMethodListener);`
-4. 不要忘记反注册：`InputMethodHolder.unregisterListener(onInputMethodListener);`
-5. 应用退出时最好调用：`InputMethodHolder.release();` 防止 Context 内存泄漏。  
-
 ```java
-	onInputMethodListener = new OnInputMethodListener() {  
-	   @Override  
-	   public void onShow(boolean result) {  
-	       Toast.makeText(MainActivity.this, "Show input method! " + result, Toast.LENGTH_SHORT).show();  
-	   }  
-	   @Override  
-	   public void onHide(boolean result) {  
-	       Toast.makeText(MainActivity.this, "Hide input method! " + result, Toast.LENGTH_SHORT).show();  
-	   }  
-	};  
+    public class MyApplication extends Application {  
+        @Override  
+        protected void attachBaseContext(Context base) {  
+            InputMethodHolder.init(base);  
+            super.attachBaseContext(base);  
+        }  
+    }  
+```
+3. 需要监听的地方注册监听器：
+```java
+	onInputMethodListener = new OnInputMethodListener() {
+	   @Override
+	   public void onShow(boolean result) {
+	       Toast.makeText(MainActivity.this, "Show input method! " + result, Toast.LENGTH_SHORT).show();
+	   }
+	   @Override
+	   public void onHide(boolean result) {
+	       Toast.makeText(MainActivity.this, "Hide input method! " + result, Toast.LENGTH_SHORT).show();
+	   }
+	};
 	InputMethodHolder.registerListener(onInputMethodListener);
 ```
+4. 不要忘记反注册：
+```java
+InputMethodHolder.unregisterListener(onInputMethodListener);
+```
+5. 应用退出时最好调用：`InputMethodHolder.release();` 防止 Context 内存泄漏。
 
 **具体使用方法请看Sample，未做充分测试，在定制ROM中可能存在兼容性问题，欢迎提ISSUE**
 
