@@ -64,10 +64,13 @@ public class InputMethodManagerHook extends Hook implements InvocationHandler {
     }
 
     private void clearCachedService() throws Throwable {
-        ReflectUtil.setStaticFiled(InputMethodManager.class, "sInstance", null);
-        Object systemFetcher = SystemServiceRegistryCompat.getSystemFetcher(Context.INPUT_METHOD_SERVICE);
-        if (systemFetcher != null) {
-            ReflectUtil.setFiled(systemFetcher.getClass().getSuperclass(), "mCachedInstance", systemFetcher, null);
+        Object sInstance = ReflectUtil.getStaticFiled(InputMethodManager.class, "sInstance");
+        if (sInstance != null) {
+            ReflectUtil.setStaticFiled(InputMethodManager.class, "sInstance", null);
+            Object systemFetcher = SystemServiceRegistryCompat.getSystemFetcher(Context.INPUT_METHOD_SERVICE);
+            if (systemFetcher != null) {
+                ReflectUtil.setFiled(systemFetcher.getClass().getSuperclass(), "mCachedInstance", systemFetcher, null);
+            }
         }
     }
 

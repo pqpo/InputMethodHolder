@@ -41,7 +41,7 @@ protected void onDestroy() {
     InputMethodHolder.unregisterListener(onInputMethodListener);
 }
 ```
-4.Do't forget to release when exiting(avoid memory leaks)：
+4.Don't forget to release when exiting(avoid memory leaks)：
 ```java
 InputMethodHolder.release();
 ```
@@ -50,10 +50,10 @@ InputMethodHolder.release();
 
 Defect
 -----
-onShow works in most situations, but onHide can only give callbacks by calling hideSoftInputFromWindows manually.
+`onShow` works well in most situations, but `onHide` can only give callbacks by calling `hideSoftInputFromWindows` manually.
 The reason is that system keyboard is hold by another process,
-and the procedure for using the keyboard by an application  is a local process remote call through InputMethodManager,
-our hook is just that InputMethodManager of the application's process.
+and the procedure for using the keyboard by an application  is a local process remote call through `InputMethodManager`,
+the hook is just that InputMethodManager of the application's process.
 
 ```java
 public interface OnInputMethodListener {

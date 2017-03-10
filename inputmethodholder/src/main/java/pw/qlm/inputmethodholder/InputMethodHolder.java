@@ -20,11 +20,15 @@ public class InputMethodHolder {
     private static InputMethodListener mInputMethodListener;
 
     public static void registerListener(OnInputMethodListener listener) {
-        mInputMethodListener.registerListener(listener);
+        if(mInputMethodListener != null) {
+            mInputMethodListener.registerListener(listener);
+        }
     }
 
     public static void unregisterListener(OnInputMethodListener listener) {
-        mInputMethodListener.unregisterListener(listener);
+        if (mInputMethodListener != null) {
+            mInputMethodListener.unregisterListener(listener);
+        }
     }
 
     public static void init(final Context context) {

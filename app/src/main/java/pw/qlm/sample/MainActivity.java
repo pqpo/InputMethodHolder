@@ -43,12 +43,29 @@ public class MainActivity extends AppCompatActivity {
         InputMethodHolder.registerListener(onInputMethodListener);
 
         //FIXME 在这初始化会失败，目前只能在Application中
-//        btnHook.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                InputMethodHolder.init(getApplication().getBaseContext());
-//            }
-//        });
+//        Caused by: java.lang.IllegalArgumentException: unknown client android.os.BinderProxy@2df668f
+//        at android.os.Parcel.readException(Parcel.java:1624)
+//        at android.os.Parcel.readException(Parcel.java:1573)
+//        at com.android.internal.view.IInputMethodManager$Stub$Proxy.windowGainedFocus(IInputMethodManager.java:733)
+//        at java.lang.reflect.Method.invoke(Native Method) 
+//        at pw.qlm.inputmethodholder.hook.InputMethodManagerHook.invoke(InputMethodManagerHook.java:38) 
+//        at java.lang.reflect.Proxy.invoke(Proxy.java:393) 
+//        at $Proxy1.windowGainedFocus(Unknown Source) 
+//        at android.view.inputmethod.InputMethodManager.startInputInner(InputMethodManager.java:1226) 
+//        at android.view.inputmethod.InputMethodManager.onPostWindowFocus(InputMethodManager.java:1445) 
+//        at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:3394) 
+//        at android.os.Handler.dispatchMessage(Handler.java:102) 
+//        at android.os.Looper.loop(Looper.java:148) 
+//        at android.app.ActivityThread.main(ActivityThread.java:5461) 
+//        at java.lang.reflect.Method.invoke(Native Method) 
+//        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:726) 
+//        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:616) 
+        btnHook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodHolder.init(getApplication().getBaseContext());
+            }
+        });
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
