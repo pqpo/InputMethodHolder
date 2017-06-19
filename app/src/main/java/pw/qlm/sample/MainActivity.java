@@ -79,6 +79,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         InputMethodHolder.unregisterListener(onInputMethodListener);
-        InputMethodHolder.release();
+//        InputMethodHolder.release();
     }
 }
